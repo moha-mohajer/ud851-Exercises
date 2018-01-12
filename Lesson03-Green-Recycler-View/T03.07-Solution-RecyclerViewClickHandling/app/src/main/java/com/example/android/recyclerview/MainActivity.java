@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity
          *                     Item #42 clicked.
          */
         String toastMessage = "Item #" + clickedItemIndex + " clicked.";
-        mToast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
+        mToast = Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT);
 
         mToast.show();
     }
