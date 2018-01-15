@@ -39,11 +39,10 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onClickOpenWebpageButton(View v) {
         // X TODO (5) Create a String that contains a URL ( make sure it starts with http:// or https:// )
-        String url = "https://developer.android.com/guide/components/intents-common.html#Browser";
+        String url = "https://developer.android.com";
 
         // X TODO (6) Replace the Toast with a call to openWebPage, passing in the URL String from the previous step
         openWebpage(url);
-        Toast.makeText(this, "TODO: Open a web page when this button is clicked", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         // X TODO (3) Create an Intent with Intent.ACTION_VIEW and the webpage Uri as parameters
         Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-        
+
         // X TODO (4) Verify that this Intent can be launched and then call startActivity
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
