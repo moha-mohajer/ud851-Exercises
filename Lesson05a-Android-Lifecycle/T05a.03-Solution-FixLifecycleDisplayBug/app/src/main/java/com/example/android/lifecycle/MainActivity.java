@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private TextView mLifecycleDisplay;
 
-    // COMPLETED (1) Declare and instantiate a static ArrayList of Strings called mLifecycleCallbacks
     /*
      * This ArrayList will keep track of lifecycle callbacks that occur after we are able to save
      * them. Since, as we've observed, the contents of the TextView are saved in onSaveInstanceState
@@ -222,6 +222,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private void logAndAppend(String lifecycleEvent) {
         Log.d(TAG, "Lifecycle Event: " + lifecycleEvent);
+
+        Toast.makeText(this, "Lifecycle Event: " + lifecycleEvent, Toast.LENGTH_SHORT).show();
 
         mLifecycleDisplay.append(lifecycleEvent + "\n");
     }
