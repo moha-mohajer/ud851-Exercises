@@ -3,6 +3,7 @@ package com.example.android.waitlist;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +15,18 @@ import com.example.android.waitlist.data.WaitlistContract;
 public class GuestListAdapter extends RecyclerView.Adapter<GuestListAdapter.GuestViewHolder> {
 
     private Context mContext;
-    // TODO (1) Replace the mCount with a Cursor field called mCursor
-    private int mCount;
+    // X TODO (1) Replace the mCount with a Cursor field called mCursor
+    private Cursor mCursor;
 
     /**
      * Constructor using the context and the db cursor
      * @param context the calling context/activity
      */
-    // TODO (2) Modify the constructor to accept a cursor rather than an integer
-    public GuestListAdapter(Context context, int count) {
+    // X TODO (2) Modify the constructor to accept a cursor rather than an integer
+    public GuestListAdapter(Context context, Cursor cursor) {
         this.mContext = context;
-        // TODO (3) Set the local mCursor to be equal to cursor
-        mCount = count;
+        // X TODO (3) Set the local mCursor to be equal to cursor
+        mCursor = cursor;
     }
 
     @Override
@@ -38,21 +39,49 @@ public class GuestListAdapter extends RecyclerView.Adapter<GuestListAdapter.Gues
 
     @Override
     public void onBindViewHolder(GuestViewHolder holder, int position) {
-        // TODO (5) Move the cursor to the passed in position, return if moveToPosition returns false
+        // X TODO (5) Move the cursor to the passed in position, return if moveToPosition returns false
+        if(!mCursor.moveToPosition(position))
+            return;
 
-        // TODO (6) Call getString on the cursor to get the guest's name
+        // X TODO (6) Call getString on the cursor to get the guest's name
+        String name = mCursor.getString(mCursor.getColumnIndex(WaitlistContract.WaitlistEntry.COLUMN_GUEST_NAME));
 
-        // TODO (7) Call getInt on the cursor to get the party size
+        // X TODO (7) Call getInt on the cursor to get the party size
+        int partySize = mCursor.getInt(mCursor.getColumnIndex(WaitlistContract.WaitlistEntry.COLUMN_PARTY_SIZE));
 
-        // TODO (8) Set the holder's nameTextView text to the guest's name
+        // X TODO (8) Set the holder's nameTextView text to the guest's name
+        holder.nameTextView.setText(name);
 
-        // TODO (9) Set the holder's partySizeTextView text to the party size
+        // X TODO (9) Set the holder's partySizeTextView text to the party size
+        holder.partySizeTextView.setText(String.valueOf(partySize));
+
+        Log.i("info" ,
+                "Column Index: " + mCursor.getColumnIndex(WaitlistContract.WaitlistEntry.COLUMN_GUEST_NAME) + "  | " +
+                        "Name: " + WaitlistContract.WaitlistEntry.COLUMN_GUEST_NAME + "  | " +
+                        "Value: " + mCursor.getString(mCursor.getColumnIndex(WaitlistContract.WaitlistEntry.COLUMN_GUEST_NAME))
+        );
+
+        Log.i("info" ,
+                "Column Index: " + mCursor.getColumnIndex(WaitlistContract.WaitlistEntry.COLUMN_PARTY_SIZE) + "  | " +
+                        "Name: " + WaitlistContract.WaitlistEntry.COLUMN_PARTY_SIZE + "  | " +
+                        "Value: " + mCursor.getInt(mCursor.getColumnIndex(WaitlistContract.WaitlistEntry.COLUMN_PARTY_SIZE))
+        );
+
+        Log.i("info" ,
+
+                "Column Index: " + mCursor.getColumnIndex(WaitlistContract.WaitlistEntry.COLUMN_TIMESTAMP) + "  | " +
+                        "Name: " + WaitlistContract.WaitlistEntry.COLUMN_TIMESTAMP + "  | " +
+                        "Value: " + mCursor.getString(mCursor.getColumnIndex(WaitlistContract.WaitlistEntry.COLUMN_TIMESTAMP))
+        );
+
+        Log.i("info" , "_______________________________________________________________________________________________" );
+        Log.i("info" , "                                                       " );
     }
 
     @Override
     public int getItemCount() {
-        // TODO (4) Update the getItemCount to return the getCount of mCursor
-        return mCount;
+        // X TODO (4) Update the getItemCount to return the getCount of mCursor
+        return mCursor.getCount();
     }
 
 
